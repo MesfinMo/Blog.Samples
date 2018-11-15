@@ -37,7 +37,7 @@ namespace DNC.Data.Walmart
         {
             List<Item> items = null;
             var path = "items?ids=" + itemId + "&apiKey=" + this.walmartApiConfig.API_KEY;
-            var result = await CallWalmartApi(path);
+            var result = await CallWalmartApi(path);    
             var serializedItems = JsonConvert.DeserializeObject<Root>(result.Content);
             items = serializedItems.items != null ? serializedItems.items.ToList() : null;
             return items;

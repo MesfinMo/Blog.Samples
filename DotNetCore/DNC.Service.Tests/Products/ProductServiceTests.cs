@@ -32,7 +32,6 @@ namespace DNC.Service.Tests.Products
 
             var productService = new ProductService(mock.Object);
 
-
             var result = await productService.SearchProductByTextAsync(searchText);
 
             Assert.AreEqual(result.SearchTerm, searchText);
@@ -41,7 +40,6 @@ namespace DNC.Service.Tests.Products
         }
 
         [TestMethod]
-
         public async Task GetProductByIdAsync_ShouldReturnProductForGivenId()
         {
             var productId = "42608125";
@@ -58,7 +56,6 @@ namespace DNC.Service.Tests.Products
         }
 
         [TestMethod]
-
         public async Task GetProductRecommendationByIdAsync_ShouldReturnRecommendationsForProduct()
         {
             var productId = "12417832";
@@ -79,8 +76,6 @@ namespace DNC.Service.Tests.Products
             Assert.IsTrue(result.Count > 0, "Should return at least one recommendation");
             Assert.AreEqual(result[0].OfferType, OfferType);
             Assert.AreEqual(result[0].ProductId, productId);
-
-
         }
     }
 }

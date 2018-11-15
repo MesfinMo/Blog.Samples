@@ -10,11 +10,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DNC.Core\DNC.Core.csproj" />
-    <ProjectReference Include="..\DNC.Data\DNC.Data.csproj" />
+    <ProjectReference Include="..\DNC.Service\DNC.Service.csproj" />
   </ItemGroup>
 
 </Project>
