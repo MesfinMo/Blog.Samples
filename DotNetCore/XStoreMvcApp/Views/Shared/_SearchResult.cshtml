@@ -1,0 +1,25 @@
+﻿@model DNC.Core.Domain.Store.SearchResult
+
+<div class="row">
+    <div class="col-md-12">
+        @{var i = 0; }
+        @foreach (var product in Model.SearchProducts)
+        {
+            if (i % 4 == 0)
+            {<div class="row"></div> }
+            <div class="col-md-3 product-name-search pull-left">
+                <div class="card card-bg">
+                    <div><a href="#@product.Product.ProductId" id="productThumb"><img src="@product.Product.MediumThumbnailUri" data-productId="@product.Product.ProductId" /></a></div>
+                    <div class="padding-top"><a href="#@product.Product.ProductId" data-productId="@product.Product.ProductId" id="productName">@product.Product.ProductName</a></div>
+                    <div class="price">$@product.Product.Price</div>
+                    <div class="twodayshipping">@product.Product.TwoDayShipping</div>
+                    <div class="productsource">@product.Product.ProductSource</div>
+
+                </div>
+            </div>
+
+            i++;
+        }
+
+    </div>
+</div>

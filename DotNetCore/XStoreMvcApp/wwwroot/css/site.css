@@ -1,0 +1,173 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification\ 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .svg files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".svg"] {
+    width: 100%;
+}
+
+/* QR code generator */
+#qrCode {
+    margin: 15px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}
+
+
+.logo-wmt {
+    width: 167px;
+    height: 40px;
+    background-position: -57px -514px;
+}
+
+.sprite {
+    display: inline-block;
+    overflow: hidden;
+    background-repeat: no-repeat;
+    background-image: url("../imgages/spritesheet.png");
+}
+
+.margin-top {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.padding-top {
+    padding-top: 40px;
+}
+
+.navbar-inverse {
+    background-color: #670300;
+    border-color: #670300;
+}
+
+    .navbar-inverse .navbar-brand {
+        color: #FFFFFF;
+        font-size: x-large;
+    }
+
+.product-name-search {
+    color: #000;
+    font-family: BogleWeb,Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 14px;
+    text-align: left;
+    text-decoration: none;
+    display: inline-block;
+    line-height: normal;
+    padding-left: 0;
+    vertical-align: top;
+    white-space: normal;
+    box-sizing: border-box;
+}
+
+.card {
+    display: inline-block;
+    position: relative;
+    margin-bottom: 20px;
+    font-family: BogleWeb,Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: #404040;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 22px;
+    letter-spacing: .4px;
+    float: left;
+}
+
+    .card a {
+        color: #000;
+        text-decoration: none;
+    }
+
+.price {
+    color: #000;
+    line-height: 22px;
+    font-weight: 700;
+    text-align: left;
+    font-family: BogleWeb,Helvetica Neue,Helvetica,Arial,sans-serif;
+}
+
+.twodayshipping {
+    font-size: 14px;
+    font-weight: 600;
+    color: #2a8703;
+    cursor: text;
+}
+
+.detail-title {
+    font-size: 22px;
+    font-weight: 400;
+    font-family: BogleWeb,Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: #000;
+}
+
+#overlay {
+    background: #ffffff;
+    color: #666666;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 5000;
+    top: 0;
+    left: 0;
+    float: left;
+    text-align: center;
+    padding-top: 25%;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba( 255, 255, 255, .8 ) url('/images/ajax-loader.gif') 50% 50% no-repeat;
+}
+
+/* When the body has the loading class, we turn
+   the scrollbar off with overflow:hidden */
+body.loading {
+    overflow: hidden;
+}
+
+    /* Anytime the body has the loading class, our
+   modal element will be visible */
+    body.loading .modal {
+        display: block;
+    }
+
+.btn-primary {
+    color: #fff;
+    background-color: #C52010;
+    border-color: #C52010;
+}
+
+    .btn-primary:hover {
+        color: #fff;
+        background-color: #9D0E02;
+        border-color: #9D0E02;
+    }

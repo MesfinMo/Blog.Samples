@@ -9,25 +9,25 @@ namespace DNC.Service.Products
 {
     public class ProductService : IProductService
     {
-        private readonly IRepositoryRest walmartRepository;
+        private readonly IRepositoryRest xStoreRepository;
 
-        public ProductService(IRepositoryRest walmartRepository)
+        public ProductService(IRepositoryRest xStoreRepository)
         {
-            this.walmartRepository = walmartRepository;
+            this.xStoreRepository = xStoreRepository;
         }
         public async Task<Product> GetProductByIdAsync(string productId)
         {
-            return (await this.walmartRepository.GetProductByProductIdAsync(productId))?[0];
+            return (await this.xStoreRepository.GetProductByProductIdAsync(productId))?[0];
         }
 
         public async Task<List<Recommendation>> GetProductRecommendationByIdAsync(string productId)
         {
-            return await this.walmartRepository.GetRecommendationsByProeuctIddAsync(productId);
+            return await this.xStoreRepository.GetRecommendationsByProeuctIddAsync(productId);
         }
 
         public async Task<SearchResult> SearchProductByTextAsync(string searchText)
         {
-            return await this.walmartRepository.SearchProductByTextAsync(searchText);
+            return await this.xStoreRepository.SearchProductByTextAsync(searchText);
         }
     }
 }

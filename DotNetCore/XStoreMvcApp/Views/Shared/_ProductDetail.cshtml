@@ -1,0 +1,48 @@
+﻿@using System.Web
+@model ProductDetailViewModel
+
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="card card-bg">
+                <div><img src="@Model.Product.LargeImageUri" /></div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="card card-bg">
+                <div class="detail-title">@Model.Product.ProductName</div>
+                <div class="price padding-top">$@Model.Product.Price</div>
+                <h4 class="padding-top">Product highlights</h4>
+                <div class="">@Html.Raw(HttpUtility.HtmlDecode(Model.Product.LongDescription))</div>
+            </div>
+        </div>
+    </div>
+</div>
+@if (Model.Recommendations != null)
+{
+    <h3 class="padding-top">Recommendations</h3>
+    <div class="row padding-top">
+        <div class="col-md-12">
+            @{var i = 0; }
+            @foreach (var product in Model.Recommendations)
+            {
+                if (i % 6 == 0)
+                {<div class="row"></div> }
+                <div class="col-md-2 product-name-search pull-left">
+                    <div class="card card-bg">
+                        <div><a href="#@product.Product.ProductId" id="productThumb"><img src="@product.Product.ThumbnailUri" data-productId="@product.Product.ProductId" /></a></div>
+                        <div class="padding-top"><a href="#@product.Product.ProductId" data-productId="@product.Product.ProductId" id="productName">@product.Product.ProductName</a></div>
+                        <div class="price">$@product.Product.Price</div>
+                        <div class="twodayshipping">@product.Product.TwoDayShipping</div>
+                    </div>
+                </div>
+
+                i++;
+            }
+
+        </div>
+    </div>
+}
+

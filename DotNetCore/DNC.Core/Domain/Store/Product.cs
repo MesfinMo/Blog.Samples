@@ -14,6 +14,7 @@ namespace DNC.Core.Domain.Store
         public string ThumbnailUri { get; set; }
         public string MediumThumbnailUri { get; set; }
         public string LargeImageUri { get; set; }
-        public string TwoDayShipping { get; set; }  
+        public string TwoDayShipping { get; set; }
+        public string ProductSource { get; set; }
     }
 }

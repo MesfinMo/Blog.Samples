@@ -4,3 +4,4 @@ obj
 config
 packages
 **/appsettings.Development.json
+**/test.runsettings

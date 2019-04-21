@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using DNC.Core.Data;
+using DNC.Core.Domain.Bestbuy.Products;
 using DNC.Core.Domain.Walmart.Items;
 using DNC.Core.Infrastructure.Mapper;
+using DNC.Data.Bestbuy;
 using DNC.Data.Infrastrucure.Mapper;
 using DNC.Data.Walmart;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -17,7 +19,7 @@ namespace DNC.Data.Tests.Repositories
     [TestClass]
     public class TestWalmartRepository
     {
-        IRepositoryRest walmartRepository;
+        IRepositoryRest xStoreRepository;
 
         [TestInitialize]
         public void TestInit()
@@ -39,13 +41,20 @@ namespace DNC.Data.Tests.Repositories
             };
             var itemId = "12417832";
 
+            var products = new Product[]  {
+                new Product { productId = "1219661412848" }
+            };
+            var productId = "1219661412848";
+
             var mock = new Mock<IWalmartServiceContext>();
+            var bbmock = new Mock<IBestbuyServiceContext>();
+
             mock.Setup(m => m.GetItemByItemIdAsync(itemId)).Returns(Task.FromResult(items.ToList()));
 
-            walmartRepository = new WalmartRepository(mock.Object);
+            xStoreRepository = new XStoreRepository(mock.Object, bbmock.Object);
 
 
-            var result = await walmartRepository.GetProductByProductIdAsync(itemId);
+            var result = await xStoreRepository.GetProductByProductIdAsync(itemId);
 
             Assert.AreEqual(result[0].ProductId, itemId);
 
@@ -56,15 +65,19 @@ namespace DNC.Data.Tests.Repositories
         {
             var searchItem = new ItemSearch { query = "ipod", items = new Item[] { new Item { itemId = "42608125" } } };
 
+            var searchProduct = new ProductSearch { queryTime = 3.2, products = new Product[] { new Product { productId = "1219661412848" } } };
+
             var searchText = "ipod";
 
             var mock = new Mock<IWalmartServiceContext>();
+            var bbmock = new Mock<IBestbuyServiceContext>();
+
             mock.Setup(m => m.SearchItemByTextAsync(searchText)).Returns(Task.FromResult(searchItem));
 
-            walmartRepository = new WalmartRepository(mock.Object);
+            xStoreRepository = new XStoreRepository(mock.Object, bbmock.Object);
 
 
-            var result = await walmartRepository.SearchProductByTextAsync(searchText);
+            var result = await xStoreRepository.SearchProductByTextAsync(searchText);
 
             Assert.AreEqual(result.SearchTerm, searchText);
             mock.VerifyAll();
@@ -78,12 +91,14 @@ namespace DNC.Data.Tests.Repositories
             var recommendItemId = "12417832";
 
             var mock = new Mock<IWalmartServiceContext>();
+            var bbmock = new Mock<IBestbuyServiceContext>();
+
             mock.Setup(m => m.GetItemRecommendationByItemIdAsync(recommendItemId)).Returns(Task.FromResult(recommendations));
 
-            walmartRepository = new WalmartRepository(mock.Object);
+            xStoreRepository = new XStoreRepository(mock.Object, bbmock.Object);
 
 
-            var result = await walmartRepository.GetRecommendationsByProeuctIddAsync(recommendItemId);
+            var result = await xStoreRepository.GetRecommendationsByProeuctIddAsync(recommendItemId);
 
             Assert.AreEqual(result[0].ProductId, "42608125");
             Assert.AreEqual(result[0].Product.ProductName, "Onn by Walmart skin for apple ipod touch");

@@ -1,10 +1,12 @@
 ﻿using DNC.Core.Configuration;
 using DNC.Data.Walmart;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,18 +16,24 @@ namespace DNC.Data.Tests.WalmartApi
     public class TestWalmartApi
     {
         IWalmartServiceContext walmartService;
+        private static WalmartApiConfig walmartApiConfig;
+
+        [ClassInitialize]
+        public static void Initialize(TestContext testContext) //https://docs.microsoft.com/en-us/visualstudio/test/configure-unit-tests-by-using-a-dot-runsettings-file?view=vs-2017
+        {
+            walmartApiConfig = new WalmartApiConfig()
+            {
+                API_KEY = testContext.Properties["API_KEY"].ToString(),
+                BASE_API_URI = testContext.Properties["BASE_API_URI"].ToString()
+            };
+        }
 
         [TestMethod]
         public async Task GetItemByItemId_ShouldReturnItemForGivenItemId()
         {
-            var walmartConfig = new WalmartApiConfig()
-            {
-                API_KEY = "52txne3qyx4pnke2wxacsxff",
-                BASE_API_URI = "http://api.walmartlabs.com/v1/"
-            };
 
             var mock = new Mock<IOptions<WalmartApiConfig>>();
-            mock.Setup(m => m.Value).Returns(walmartConfig);
+            mock.Setup(m => m.Value).Returns(walmartApiConfig);
 
             walmartService = new WalmartService(mock.Object);
 
